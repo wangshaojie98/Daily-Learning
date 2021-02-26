@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function buildUrl() {
+        let qs = "?debug=true";
+        with (location) {
+          var url = href + qs;
+        }
+        return url;
+      }
+      console.log(buildUrl());
+
+      // 让整个对象都不能修改，虽然不会报错，但会静默失败
+      const o3 = {}
+      Object.freeze(o3);
+      o3.a = 'aaa'
+      console.log(o3);
+    </script>t
+  </body>
+</html>

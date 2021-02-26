@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch</title>
+</head>
+<body>
+  <button onclick="fetchCat()">fetch</button>
+  <div>
+    <code id="code" ></code>
+    <img src="" alt="image" id="image" width="500">
+  </div>
+  <script>
+    const btn = document.querySelector("button");
+    const code = document.getElementById("code");
+    const url = "https://api.thecatapi.com/v1/images/search";
+    const apiKey = "de31ffeb-958a-4122-bee9-19f437e85774";
+    const handleParams = (url, payload = {}) => {
+      if (typeof payload === "object") {
+        return url + Object.keys(payload).reduce((acc, cur, index, array) => {
+          if (index === 0) {
+            acc += "?"
+          }
+
+          if (array.length - 1 !== index) {
+            return acc + `${cur}=${payload[cur]}&`
+          }
+          
+          return acc + `${cur}=${payload[cur]}`
+        }, "")
+      }
+
+      return url;
+    };
+    
+    const payload = {
+      limit: 1,
+      size: "full"
+    }
+    console.log(handleParams(url, payload));
+    console.log(handleParams(url));
+    const headers = { 'x-api-key': apiKey };
+
+    let Url = handleParams(url, payload);
+
+    const updateCode = arg => {
+      let str = "";
+      if (typeof arg === "string") {
+        str = arg;
+      }
+
+      if (typeof arg === "object") {
+        str = JSON.stringify(arg);
+      }
+
+      code.innerHTML = str;
+    }
+
+    const updateImage = url => {
+      const image = document.getElementById("image");
+      image.src = url;
+    }
+    const  fetchCat = async () => {
+      let result;
+      await fetch(Url, { methods: "Get" })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        result = res;
+      })
+      updateCode(result);
+      updateImage(result[0].url)
+    }
+ 
+  </script>
+</body>
+</html>
