@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 获取当前时间戳
+    function getNowTime() {
+      let timestamp = Date.parse(new Date());
+      console.log(timestamp);
+
+      let timestamp1 = new Date()
+      console.log(timestamp1.getTime());
+      console.log(timestamp1.valueOf());
+      console.log(Date.now());
+    }
+    // getNowTime()
+
+    // 获取指定时间戳
+    // function getSomeTime(timeStr) {
+    //   console.log(new Date(timeStr).getTime())
+    //   return new Date(timeStr).getTime();
+    // }
+    // getSomeTime("2019/10/24 08:00:00")
+    // getSomeTime("2019/10-24 08:00:00")
+
+    // 获取当前时间的前一天/后一天的时间戳
+    function getBeforeOrNextDayTime() {
+      const time = new Date();
+      const before = time.getTime() - 24 * 60 * 60 * 1000;
+      const next = time.getTime() + 24 * 60 * 60 * 1000;
+
+      console.log({ before, next })
+      return { before, next }
+    }
+    // getBeforeOrNextDayTime()
+
+    // 今日零点时间戳
+    function getCurrentDayTime() {
+      const timestamp = new Date(new Date().toLocaleDateString()).getTime()
+
+      console.log(timestamp)
+      return timestamp
+    }
+    // getCurrentDayTime()
+
+
+    // 获取年月周日时分秒
+    function getCurrentTime() {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      const timestamp = new Date().toLocaleDateString(undefined, options)
+
+      console.log(timestamp) // 2021年2月28日星期日下午1:41:34
+      return timestamp
+    }
+    // getCurrentTime()
+
+    // 今日最晚时间 23:59:59的时间戳
+    function getCurrentLastTime() {
+      const timestamp = new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1;
+
+      console.log(timestamp) 
+      return timestamp
+    }
+    // getCurrentLastTime()
+
+    // 获取当前时间的n天后的时间戳
+    function getNextNDayTime(n) {
+      const timestamp = new Date().getTime() + 86400000 * n;
+
+      console.log(timestamp) 
+      return timestamp
+    }
+    // getNextNDayTime(1)
+
+    // 本周第一天,注意0是周日
+    function getCurWeekFirstDay() {
+      const weekDay = new Date().getDay() === 0 ? 7 : new Date().getDay(); // 周日要特殊处理成7
+      const timestamp = new Date(new Date().toDateString()).getTime() - (weekDay - 1) * 86400000; // 减去前一天的周数乘以时间戳
+
+      console.log(timestamp) 
+      return timestamp
+    }
+    getCurWeekFirstDay(1)
+    // 本周最后一天
+
+    // 本月第一天
+
+    // 本月最后一天
+
+    // 日期转时间戳
+
+    // 格式化当前时间
+
+    // 返回指定时间戳之间的时间间隔
+
+    // 按类型格式化日期
+
+    // 判断是否为闰年
+
+    // 返回两个年份之间的闰年
+
+    // 判断时间格式是否有效
+
+    // 验证日期大小
+
+    // 验证一个日期是不是今天
+
+    // 验证传入的日期是否是昨天
+
+    // 设置几天后的日期
+  </script>
+</body>
+</html>
