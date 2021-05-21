@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B页面</title>
+</head>
+<body>
+  <h1>我是B</h1>
+  <iframe src="http://localhost:8080/a.html" frameborder="0" id="frame" style="display:none"></iframe> //等它加载完触发一个事件
+  <button id="btn">发送数据给A</button>
+  <script>
+      window.onmessage = function(e) { // 监听器
+        console.log(e.data) //打印A页面的结果
+        let data = {
+          name: 'B本页面'
+        }
+        e.source.postMessage(data, e.origin) // 发送消息给A
+      }
+      
+     
+    const btn = document.getElementById('btn');
+    btn.onclick = () => {
+      let frame = document.getElementById('frame')
+      let data = {
+        name: Math.floor(Math.random() * 100)
+      }
+      frame.contentWindow.postMessage(data, 'http://localhost:8080') //发送数据给B
+    }
+  </script>
+</body>
+</html>

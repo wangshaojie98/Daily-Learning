@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟执行上下文栈</title>
+</head>
+<body>
+  <script>
+    function foo() {
+      let f1 = 'aaa'
+      console.log(f1)
+    }
+
+    function init() {
+      let i1 = 'bbb'
+      foo()
+      console.log(i1)
+    }
+    init()
+  </script>
+</body>
+</html>

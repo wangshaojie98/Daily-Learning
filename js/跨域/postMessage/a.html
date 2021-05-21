@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A页面</title>
+</head>
+<body>
+  <h1>我是A</h1>
+  <iframe src="http://localhost:8080/b.html" frameborder="10" id="frame" onload="load()"></iframe> //等它加载完触发一个事件
+  <script>
+    function load() {
+      let frame = document.getElementById('frame')
+      let data = {
+        name: 'a页面'
+      }
+      // frame.contentWindow.postMessage(data, 'http://localhost:8080') //发送数据给B
+
+      
+      window.onmessage = function(e) { //接受返回数据
+        console.log(e.data) //打印b页面返回的结果
+      }
+    }
+  </script>
+
+</body>
+</html>
