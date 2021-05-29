@@ -1,5 +1,5 @@
 let xhr = new XMLHttpRequest()
-document.cookie = 'name=wsj'
+// document.cookie = 'name=wsj'
 
 xhr.withCredentials = true;
 xhr.open('PUT', 'http://localhost:4000/getData', true) // 第三个参数为async,true是异步
