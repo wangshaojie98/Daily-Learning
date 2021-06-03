@@ -6,17 +6,20 @@ app.use(function(req, res, next) {
   console.log(origin)
     // 设置哪个源可以访问我
     res.setHeader('Access-Control-Allow-Origin', origin) // 这个localhost和
-    // 允许携带哪个头访问我
-    res.setHeader('Access-Control-Allow-Headers', 'name')
-    // 允许哪个方法访问我
-    res.setHeader('Access-Control-Allow-Methods', "POST, GET,PUT, OPTIONS, DELETE")
     // 允许携带cookie
     res.setHeader('Access-Control-Allow-Credentials', true)
-    // 预检的存活时间
-    res.setHeader('Access-Control-Max-Age', 6)
     // 允许返回的头
     res.setHeader('Access-Control-Expose-Headers', 'name')
+    // 处理预检请求
     if (req.method === 'OPTIONS') {
+      // 允许携带哪个头访问我
+      res.setHeader('Access-Control-Allow-Headers', 'name')
+      // 允许哪个方法访问我
+      res.setHeader('Access-Control-Allow-Methods', "POST, GET,PUT, OPTIONS, DELETE")
+      
+      // 预检的存活时间
+      res.setHeader('Access-Control-Max-Age', 6)
+
       res.end() // OPTIONS请求不做任何处理
     }
   next()
